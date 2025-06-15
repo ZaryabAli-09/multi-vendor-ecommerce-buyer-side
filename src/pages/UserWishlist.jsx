@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setWishlist } from "../features/wishlistSlice.js";
 
-import WishlistItemCard from "../components/wishlistItemCard.jsx";
+import WishlistItemCard from "../components/WishlistItemCard.jsx";
 
 function UserWishlist() {
   const dispatch = useDispatch();
