@@ -3,7 +3,7 @@ import React from "react";
 import StarRating from "./StarRating";
 
 function ProductReviews({ reviews }) {
-  // console.log(reviews);
+  console.log(reviews);
   return (
     <div className="mt-9">
       {reviews.map((review, i) => {
@@ -15,7 +15,7 @@ function ProductReviews({ reviews }) {
             } `}
           >
             <span className="block font-medium text-lg">
-              {review.user.name}
+              {review?.user?.name}
             </span>
 
             <StarRating rating={review.rating} startFontSize={"text-lg"} />
@@ -25,7 +25,7 @@ function ProductReviews({ reviews }) {
             {review.sellerReply.text && (
               <div className="bg-gray-200 ml-4 p-4 mt-4">
                 <span className="text-red-600">Seller Response</span>
-                <p>{review.sellerReply.text}</p>
+                <p>{review?.sellerReply?.text}</p>
               </div>
             )}
           </div>

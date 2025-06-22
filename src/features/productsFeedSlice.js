@@ -7,9 +7,12 @@ const productsFeedSlice = createSlice({
     setProducts: (state, action) => {
       state.products = action.payload;
     },
+    addProducts: (state, action) => {
+      state.products = [...state.products, ...action.payload];
+    },
   },
 });
 
-export const { setProducts } = productsFeedSlice.actions;
+export const { setProducts, addProducts } = productsFeedSlice.actions;
 
 export default productsFeedSlice.reducer;
