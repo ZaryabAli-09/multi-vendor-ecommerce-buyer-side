@@ -127,6 +127,8 @@ function UserCart() {
     }
   }
 
+  console.log(selectedItems);
+
   async function decrementCartItemCount(cartItemId, quantity) {
     try {
       const response = await fetch(
@@ -274,134 +276,6 @@ function UserCart() {
     return acc;
   }, 0);
 
-  //   if (isLoading) {
-  //     return <main></main>;
-  //   }
-
-  //   return (
-  //     <main
-  //       className={`px-6 pb-10 min-h-[87.7vh]`}
-  //       style={{ backgroundColor: cartItems.length > 0 ? "#f4f4f4" : "" }}
-  //     >
-  //       {/* title */}
-
-  //       <h1 className="text-center py-7 text-2xl font-bold">My Cart</h1>
-
-  //       {/* UI to show if there are no items in the cart */}
-
-  //       {cartItems.length === 0 && (
-  //         <p className="text-center text-2xl mt-32">
-  //           You currently have nothing saved to your Cart.
-  //         </p>
-  //       )}
-
-  //       {/* UI to show if cart has items */}
-
-  //       {cartItems.length > 0 && (
-  //         <div className="pr-[19rem]">
-  //           {/* The loop below will be executed once for each store */}
-  //           {Object.entries(cartItemsGroupedByStore).map(
-  //             ([storeId, storeItems]) => {
-  //               return (
-  //                 // brand and its items
-
-  //                 <div
-  //                   key={storeId}
-  //                   className={`border shadow-md rounded-xl p-4 mb-3 ${
-  //                     (selectedStoreId && selectedStoreId !== storeId) ||
-  //                     (selectedItemsStoreId && selectedItemsStoreId !== storeId)
-  //                       ? "opacity-40 pointer-events-none"
-  //                       : "bg-white"
-  //                   }`}
-  //                 >
-  //                   {/* brand realted info (checkbox and brand name) */}
-
-  //                   <div className="flex items-center mb-4">
-  //                     {/* checkbox */}
-
-  //                     <input
-  //                       type="checkbox"
-  //                       checked={selectedStoreId === storeId}
-  //                       onChange={() => toggleStoreSelect(storeId)}
-  //                       className="mr-5 scale-150"
-  //                     />
-
-  //                     {/* brand icon and brand name */}
-
-  //                     <Link to={`/store/${storeId}?tab=products`}>
-  //                       <h2 className="text-xl font-semibold">
-  //                         <MdOutlineStorefront className="text-2xl inline-block relative bottom-[1px] mr-3" />
-  //                         <span>
-  //                           {brandNames[storeId]}{" "}
-  //                           <FaAngleRight className="inline-block text-[17px]" />
-  //                         </span>
-  //                       </h2>
-  //                     </Link>
-  //                   </div>
-
-  //                   {/* brand items */}
-
-  //                   {storeItems.map((item) => {
-  //                     const isChecked = selectedItems.includes(item._id);
-  //                     const image = item.variant.images[0]?.url;
-
-  //                     return (
-  //                       <CartItemCard
-  //                         id={item._id}
-  //                         key={item._id}
-  //                         isChecked={isChecked}
-  //                         image={image}
-  //                         selectedStoreId={selectedStoreId}
-  //                         storeId={storeId}
-  //                         productId={item.product._id}
-  //                         variantId={item.variant._id}
-  //                         productName={item.product.name}
-  //                         size={item.variant.size}
-  //                         color={item.variant.color}
-  //                         price={item.variant.price}
-  //                         discountedPrice={item.variant.discountedPrice}
-  //                         quantity={item.quantity}
-  //                         toggleItemSelect={toggleItemSelect}
-  //                         handleRemoveFromCart={handleRemoveFromCart}
-  //                         incrementCartItemCount={incrementCartItemCount}
-  //                         decrementCartItemCount={decrementCartItemCount}
-  //                       />
-  //                     );
-  //                   })}
-  //                 </div>
-
-  //                 // cart items in a store
-  //               );
-  //             }
-  //           )}
-
-  //           {/* The menu on the right which shows order summary */}
-
-  //           <aside className="fixed top-[28.2%] right-7 h-max w-72 bg-white border-l px-6 py-[2.1rem] shadow-lg overflow-auto rounded-lg">
-  //             <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
-
-  //             <div className="space-y-3 mb-6">
-  //               <div className="flex justify-between">
-  //                 <span>Subtotal</span>
-  //                 <span>Rs {formatAmount(selectedItemsTotalAmount)}</span>
-  //               </div>
-  //               <div className="flex justify-between">
-  //                 <span>Saved</span>
-  //                 <span>Rs {formatAmount(totalAmountSaved)}</span>
-  //               </div>
-  //             </div>
-
-  //             <button className="w-full bg-black text-white py-3 rounded text-lg font-semibold">
-  //               Checkout Now ({selectedItemsCount})
-  //             </button>
-  //           </aside>
-  //         </div>
-  //       )}
-  //     </main>
-  //   );
-  // }
-
-  // export default UserCart;
   if (isLoading) {
     return (
       <main className="flex justify-center items-center h-64">
@@ -503,7 +377,33 @@ function UserCart() {
                   <span>Rs {formatAmount(totalAmountSaved)}</span>
                 </div>
               </div>
-              <button className="w-full bg-black hover:bg-gray-800 text-white py-3 rounded-md text-lg font-semibold transition-colors">
+
+              <button
+                onClick={() => {
+                  if (selectedItems.length === 0) {
+                    toast.error("Please select items to checkout.");
+                    return;
+                  }
+                  if (selectedStoreId === null) {
+                    toast.error("Please select a store to checkout.");
+                    return;
+                  }
+
+                  const orderItems = {
+                    orderItems: cartItems
+                      .filter((item) => selectedItems.includes(item._id))
+                      .map((item) => ({
+                        product: item.product._id,
+                        variantId: item.variant._id,
+                        quantity: item.quantity,
+                      })),
+                  };
+                  window.location.href = `/order/checkout?orderItems=${encodeURIComponent(
+                    JSON.stringify(orderItems)
+                  )}`;
+                }}
+                className="w-full bg-black hover:bg-gray-800 text-white py-3 rounded-md text-lg font-semibold transition-colors"
+              >
                 Checkout ({selectedItemsCount})
               </button>
             </div>
@@ -515,3 +415,132 @@ function UserCart() {
 }
 
 export default UserCart;
+
+//   if (isLoading) {
+//     return <main></main>;
+//   }
+
+//   return (
+//     <main
+//       className={`px-6 pb-10 min-h-[87.7vh]`}
+//       style={{ backgroundColor: cartItems.length > 0 ? "#f4f4f4" : "" }}
+//     >
+//       {/* title */}
+
+//       <h1 className="text-center py-7 text-2xl font-bold">My Cart</h1>
+
+//       {/* UI to show if there are no items in the cart */}
+
+//       {cartItems.length === 0 && (
+//         <p className="text-center text-2xl mt-32">
+//           You currently have nothing saved to your Cart.
+//         </p>
+//       )}
+
+//       {/* UI to show if cart has items */}
+
+//       {cartItems.length > 0 && (
+//         <div className="pr-[19rem]">
+//           {/* The loop below will be executed once for each store */}
+//           {Object.entries(cartItemsGroupedByStore).map(
+//             ([storeId, storeItems]) => {
+//               return (
+//                 // brand and its items
+
+//                 <div
+//                   key={storeId}
+//                   className={`border shadow-md rounded-xl p-4 mb-3 ${
+//                     (selectedStoreId && selectedStoreId !== storeId) ||
+//                     (selectedItemsStoreId && selectedItemsStoreId !== storeId)
+//                       ? "opacity-40 pointer-events-none"
+//                       : "bg-white"
+//                   }`}
+//                 >
+//                   {/* brand realted info (checkbox and brand name) */}
+
+//                   <div className="flex items-center mb-4">
+//                     {/* checkbox */}
+
+//                     <input
+//                       type="checkbox"
+//                       checked={selectedStoreId === storeId}
+//                       onChange={() => toggleStoreSelect(storeId)}
+//                       className="mr-5 scale-150"
+//                     />
+
+//                     {/* brand icon and brand name */}
+
+//                     <Link to={`/store/${storeId}?tab=products`}>
+//                       <h2 className="text-xl font-semibold">
+//                         <MdOutlineStorefront className="text-2xl inline-block relative bottom-[1px] mr-3" />
+//                         <span>
+//                           {brandNames[storeId]}{" "}
+//                           <FaAngleRight className="inline-block text-[17px]" />
+//                         </span>
+//                       </h2>
+//                     </Link>
+//                   </div>
+
+//                   {/* brand items */}
+
+//                   {storeItems.map((item) => {
+//                     const isChecked = selectedItems.includes(item._id);
+//                     const image = item.variant.images[0]?.url;
+
+//                     return (
+//                       <CartItemCard
+//                         id={item._id}
+//                         key={item._id}
+//                         isChecked={isChecked}
+//                         image={image}
+//                         selectedStoreId={selectedStoreId}
+//                         storeId={storeId}
+//                         productId={item.product._id}
+//                         variantId={item.variant._id}
+//                         productName={item.product.name}
+//                         size={item.variant.size}
+//                         color={item.variant.color}
+//                         price={item.variant.price}
+//                         discountedPrice={item.variant.discountedPrice}
+//                         quantity={item.quantity}
+//                         toggleItemSelect={toggleItemSelect}
+//                         handleRemoveFromCart={handleRemoveFromCart}
+//                         incrementCartItemCount={incrementCartItemCount}
+//                         decrementCartItemCount={decrementCartItemCount}
+//                       />
+//                     );
+//                   })}
+//                 </div>
+
+//                 // cart items in a store
+//               );
+//             }
+//           )}
+
+//           {/* The menu on the right which shows order summary */}
+
+//           <aside className="fixed top-[28.2%] right-7 h-max w-72 bg-white border-l px-6 py-[2.1rem] shadow-lg overflow-auto rounded-lg">
+//             <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
+
+//             <div className="space-y-3 mb-6">
+//               <div className="flex justify-between">
+//                 <span>Subtotal</span>
+//                 <span>Rs {formatAmount(selectedItemsTotalAmount)}</span>
+//               </div>
+//               <div className="flex justify-between">
+//                 <span>Saved</span>
+//                 <span>Rs {formatAmount(totalAmountSaved)}</span>
+//               </div>
+//             </div>
+
+//             <button className="w-full bg-black text-white py-3 rounded text-lg font-semibold">
+//               Checkout Now ({selectedItemsCount})
+//             </button>
+//           </aside>
+//         </div>
+//       )}
+//     </main>
+//   );
+// }
+
+// export default UserCart;

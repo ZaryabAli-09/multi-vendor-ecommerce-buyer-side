@@ -38,6 +38,10 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import TermsOfService from "./pages/TermsOfService.jsx";
 import SellerList from "./pages/AllStores.jsx";
 import MyOrders from "./pages/MyOrders.jsx";
+import CheckoutPage from "./pages/CheckoutPage.jsx";
+import CheckoutLayout from "./components/CheckoutLayout.jsx";
+import SuccessPage from "./pages/StripePaymentSuccess.jsx";
+import FailurePage from "./pages/StripePaymentFailure.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -150,6 +154,24 @@ function App() {
         {
           path: "reset-password",
           element: <ResetPassword />,
+        },
+      ],
+    },
+    {
+      path: "/order",
+      element: <CheckoutLayout />,
+      children: [
+        {
+          path: "checkout",
+          element: <CheckoutPage />,
+        },
+        {
+          path: "payment-success",
+          element: <SuccessPage />,
+        },
+        {
+          path: "payment-failure",
+          element: <FailurePage />,
         },
       ],
     },
