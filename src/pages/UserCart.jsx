@@ -297,7 +297,7 @@ function UserCart() {
               You currently have nothing saved to your Cart.
             </p>
             <Link
-              to="/products"
+              to="/"
               className="px-6 py-3 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
             >
               Continue Shopping
