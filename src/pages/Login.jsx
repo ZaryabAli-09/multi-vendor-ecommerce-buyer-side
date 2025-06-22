@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -8,7 +7,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
-
 import { login } from "../features/userSlice.js";
 import toast from "react-hot-toast";
 import GoogleLogin from "../components/GoogleLogin.jsx";
@@ -88,11 +86,13 @@ function Login() {
   }
 
   return (
-    <main className="bg-[#F6F6F4] pb-7">
-      <div className="w-[60%] py-12 px-12 border-[1px] border-gray-300 mx-auto bg-white rounded-xl">
-        <h1 className="text-4xl font-semibold mb-2">Login to your account</h1>
+    <main className="bg-[#F6F6F4] min-h-screen flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-2xl py-8 px-6 md:py-12 md:px-12 border border-gray-300 rounded-xl">
+        <h1 className="text-3xl md:text-4xl font-semibold mb-2">
+          Login to your account
+        </h1>
 
-        <p className="mb-7 ml-1">
+        <p className="mb-6 md:mb-7 ml-1">
           Don't have an account yet?{" "}
           <Link to="/auth/signup" className="text-blue-500 underline">
             Signup
@@ -100,8 +100,11 @@ function Login() {
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-7">
-            <label className="mb-2 block text-xl font-semibold" htmlFor="email">
+          <div className="mb-5 md:mb-7">
+            <label
+              className="mb-2 block text-lg md:text-xl font-semibold"
+              htmlFor="email"
+            >
               Email
             </label>
 
@@ -111,21 +114,19 @@ function Login() {
               id="email"
               {...register("email")}
               className={`${
-                errors.email
-                  ? "border-[2px] border-red-500"
-                  : "border-[1px] border-black"
-              } focus:outline-none w-[100%] px-2 py-3 rounded-[3px]`}
+                errors.email ? "border-2 border-red-500" : "border border-black"
+              } focus:outline-none w-full px-3 py-2 md:px-4 md:py-3 rounded`}
             />
 
             {errors.email && (
-              <p className="mt-2 text-red-600 font-medium">
+              <p className="mt-1 md:mt-2 text-red-600 font-medium text-sm md:text-base">
                 {errors.email.message}
               </p>
             )}
           </div>
-          <div className="mb-7">
+          <div className="mb-5 md:mb-7">
             <label
-              className="mb-2 block text-xl font-semibold"
+              className="mb-2 block text-lg md:text-xl font-semibold"
               htmlFor="password"
             >
               Password
@@ -139,14 +140,14 @@ function Login() {
                 {...register("password")}
                 className={`${
                   errors.password
-                    ? "border-red-600 border-[2px]"
-                    : "border-black border-[1px]"
-                } focus:outline-none w-[100%] px-2 py-3 rounded-[3px]`}
+                    ? "border-red-600 border-2"
+                    : "border-black border"
+                } focus:outline-none w-full px-3 py-2 md:px-4 md:py-3 rounded`}
               />
 
               <button
                 type="button"
-                className="text-2xl absolute right-3 top-[50%] translate-y-[-48%]"
+                className="text-xl md:text-2xl absolute right-3 top-1/2 transform -translate-y-1/2"
                 onClick={changePasswordVisibility}
               >
                 {isPasswordVisible ? <IoMdEyeOff /> : <IoMdEye />}
@@ -154,26 +155,26 @@ function Login() {
             </div>
 
             {errors.password && (
-              <p className="mt-2 text-red-600 font-medium">
+              <p className="mt-1 md:mt-2 text-red-600 font-medium text-sm md:text-base">
                 {errors.password.message}
               </p>
             )}
 
             <Link
               to="/auth/forgot-password"
-              className="text-blue-500 block my-4 ml-1 underline"
+              className="text-blue-500 block my-3 md:my-4 ml-1 underline text-sm md:text-base"
             >
-              forgot password?
+              Forgot password?
             </Link>
           </div>
           <button
             type="submit"
-            className="bg-black text-white px-16 py-3 text-2xl rounded-md block mx-auto"
+            className="bg-black text-white w-full md:w-auto px-6 py-2 md:px-16 md:py-3 text-lg md:text-2xl rounded-md block mx-auto"
           >
             Login
-          </button>{" "}
-          <div className="text-center  text-gray-500 my-4">or</div>
-          <div className="flex items-center justify-center ">
+          </button>
+          <div className="text-center text-gray-500 my-3 md:my-4">or</div>
+          <div className="flex items-center justify-center">
             <GoogleLogin />
           </div>
         </form>

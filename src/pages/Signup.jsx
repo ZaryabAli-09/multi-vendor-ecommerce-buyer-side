@@ -1,7 +1,4 @@
-// Design inspiration from https://login.mailchimp.com/signup/?locale=en
-
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
@@ -80,7 +77,6 @@ function Signup() {
       toast.success(result.message, {
         duration: 7000,
       });
-      // sessionStorage.setItem("email", result.data.email);
       navigate("/auth/verify-email");
     } catch (error) {
       console.log(error);
@@ -90,11 +86,13 @@ function Signup() {
   }
 
   return (
-    <main className="bg-[#F6F6F4] pb-7">
-      <div className="bg-white w-[60%] py-12 px-12 border-[1px] border-gray-300 mx-auto rounded-xl">
-        <h1 className="text-4xl font-semibold mb-2">Create a new account</h1>
+    <main className="bg-[#F6F6F4] min-h-screen flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-2xl py-8 px-6 md:py-12 md:px-12 border border-gray-300 rounded-xl">
+        <h1 className="text-3xl md:text-4xl font-semibold mb-2">
+          Create a new account
+        </h1>
 
-        <p className="mb-7 ml-1">
+        <p className="mb-6 md:mb-7 ml-1">
           Already have an account?{" "}
           <Link to="/auth/login" className="text-blue-500 underline">
             Login
@@ -102,8 +100,11 @@ function Signup() {
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-7">
-            <label className="mb-2 block text-xl font-semibold" htmlFor="name">
+          <div className="mb-5 md:mb-7">
+            <label
+              className="mb-2 block text-lg md:text-xl font-semibold"
+              htmlFor="name"
+            >
               Full Name
             </label>
 
@@ -114,20 +115,23 @@ function Signup() {
               {...register("fullName")}
               className={`${
                 errors.fullName
-                  ? "border-red-600 border-[2px]"
-                  : "border-black border-[1px]"
-              } focus:outline-none w-[100%] px-2 py-3 rounded-[3px]`}
+                  ? "border-red-600 border-2"
+                  : "border-black border"
+              } focus:outline-none w-full px-3 py-2 md:px-4 md:py-3 rounded`}
             />
 
             {errors.fullName && (
-              <p className="mt-2 text-red-600 font-medium">
+              <p className="mt-1 md:mt-2 text-red-600 font-medium text-sm md:text-base">
                 {errors.fullName.message}
               </p>
             )}
           </div>
 
-          <div className="mb-7">
-            <label className="mb-2 block text-xl font-semibold" htmlFor="email">
+          <div className="mb-5 md:mb-7">
+            <label
+              className="mb-2 block text-lg md:text-xl font-semibold"
+              htmlFor="email"
+            >
               Email
             </label>
 
@@ -137,22 +141,20 @@ function Signup() {
               id="email"
               {...register("email")}
               className={`${
-                errors.email
-                  ? "border-red-600 border-[2px]"
-                  : "border-black border-[1px]"
-              } focus:outline-none w-[100%] px-2 py-3 rounded-[3px]`}
+                errors.email ? "border-red-600 border-2" : "border-black border"
+              } focus:outline-none w-full px-3 py-2 md:px-4 md:py-3 rounded`}
             />
 
             {errors.email && (
-              <p className="mt-2 text-red-600 font-medium">
+              <p className="mt-1 md:mt-2 text-red-600 font-medium text-sm md:text-base">
                 {errors.email.message}
               </p>
             )}
           </div>
 
-          <div className="mb-7">
+          <div className="mb-5 md:mb-7">
             <label
-              className="mb-2 block text-xl font-semibold"
+              className="mb-2 block text-lg md:text-xl font-semibold"
               htmlFor="password"
             >
               Password
@@ -166,14 +168,14 @@ function Signup() {
                 {...register("password")}
                 className={`${
                   errors.password
-                    ? "border-red-600 border-[2px]"
-                    : "border-black border-[1px]"
-                } focus:outline-none w-[100%] px-2 py-3 rounded-[3px]`}
+                    ? "border-red-600 border-2"
+                    : "border-black border"
+                } focus:outline-none w-full px-3 py-2 md:px-4 md:py-3 rounded`}
               />
 
               <button
                 type="button"
-                className="text-2xl absolute right-3 top-[50%] translate-y-[-48%]"
+                className="text-xl md:text-2xl absolute right-3 top-1/2 transform -translate-y-1/2"
                 onClick={changePasswordVisibility}
               >
                 {isPasswordVisible ? <IoMdEyeOff /> : <IoMdEye />}
@@ -181,7 +183,7 @@ function Signup() {
             </div>
 
             {errors.password && (
-              <p className="mt-2 text-red-600 font-medium">
+              <p className="mt-1 md:mt-2 text-red-600 font-medium text-sm md:text-base">
                 {errors.password.message}
               </p>
             )}
@@ -189,12 +191,12 @@ function Signup() {
 
           <button
             type="submit"
-            className="bg-black text-white px-16 py-3  text-2xl rounded-md block mx-auto"
+            className="bg-black text-white w-full md:w-auto px-6 py-2 md:px-16 md:py-3 text-lg md:text-2xl rounded-md block mx-auto"
           >
             Create Account
           </button>
-          <div className="text-center  text-gray-500 my-4">or</div>
-          <div className="flex items-center justify-center ">
+          <div className="text-center text-gray-500 my-3 md:my-4">or</div>
+          <div className="flex items-center justify-center">
             <GoogleLogin />
           </div>
         </form>

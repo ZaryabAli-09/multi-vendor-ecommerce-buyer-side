@@ -143,17 +143,20 @@ function FullHeader() {
               </Link>
             )}
 
-            <Link to="/cart" className="flex gap-x-1">
-              <BsCart2 className="text-[27px]" />
-              <span className="text-lg font-semibold">{cartItemsCount}</span>
-            </Link>
-
-            <Link to="/wishlist" className="flex gap-x-1">
-              <FiHeart className="text-[23.5px] relative top-[2.5px]" />
-              <span className="text-lg font-semibold relative top-[1px]">
-                {wishlistItemsCount}
-              </span>
-            </Link>
+            {isLoggedIn && (
+              <Link to="/cart" className="flex gap-x-1">
+                <BsCart2 className="text-[27px]" />
+                <span className="text-lg font-semibold">{cartItemsCount}</span>
+              </Link>
+            )}
+            {isLoggedIn && (
+              <Link to="/wishlist" className="flex gap-x-1">
+                <FiHeart className="text-[23.5px] relative top-[2.5px]" />
+                <span className="text-lg font-semibold relative top-[1px]">
+                  {wishlistItemsCount}
+                </span>
+              </Link>
+            )}
           </div>
         </header>
         <div className="lg:hidden bg-white shadow-sm px-4 py-2 border-b-[1px]">
