@@ -82,13 +82,13 @@ const MyOrders = () => {
   }
 
   return (
-    <main className="px-4 md:px-6 mb-10 max-w-7xl mx-auto">
+    <main className="px-4 md:px-6 mb-10 max-w-7xl mx-auto min-h-[70vh]">
       <h1 className="text-center py-7 text-2xl md:text-3xl font-bold flex items-center justify-center gap-2">
         <FiPackage className="text-primary" /> My Orders
       </h1>
 
-      <div className="overflow-x-auto">
-        <table className="w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
+      <div className="overflow-x-auto ">
+        <table className="w-full bg-white border border-gray-200 rounded-lg overflow-hidden ">
           <thead className="bg-gray-100">
             <tr>
               <th className="py-3 px-4 text-left">#</th>
