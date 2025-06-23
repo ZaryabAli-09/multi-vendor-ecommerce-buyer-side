@@ -10,7 +10,7 @@ function Footer() {
     });
   };
   return (
-    <footer className="bg-gray-100 text-gray-800 py-8 px-4 mt-40">
+    <footer className="bg-gray-100 text-gray-800 py-8 px-4 ">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and about */}

@@ -1,22 +1,69 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../features/userSlice";
 import toast from "react-hot-toast";
 
 function Profile() {
   const dispatch = useDispatch();
-
-  const { name, email, phoneNumber, province, city, remainingAddress, notes } =
-    useSelector((state) => state.user);
+  const [isLoading, setIsLoading] = useState(true);
+  const { email } = useSelector((state) => state.user); // Only using email from Redux
 
   const [formData, setFormData] = useState({
-    name,
-    phoneNumber,
-    province,
-    city,
-    remainingAddress,
-    notes,
+    name: "",
+    phoneNumber: "",
+    province: "",
+    city: "",
+    remainingAddress: "",
+    notes: "",
   });
+
+  // Fetch profile data when component mounts
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/buyer/profile`,
+          {
+            credentials: "include",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile data");
+        }
+
+        const result = await response.json();
+        console.log(result);
+        // Update form data with API response
+        setFormData({
+          name: result.data.name || "",
+          phoneNumber: result.data.phoneNumber || "",
+          province: result.data?.province || "",
+          city: result.data?.city || "",
+          remainingAddress: result.data?.remainingAddress || "",
+          notes: result.data?.notes || "",
+        });
+
+        // Update Redux store with complete data
+        dispatch(
+          login({
+            ...result.data,
+            province: result.data.address?.province,
+            city: result.data.address?.city,
+            remainingAddress: result.data.address?.remainingAddress,
+            notes: result.data.address?.notes,
+          })
+        );
+      } catch (error) {
+        console.error("Profile fetch error:", error);
+        toast.error("Failed to load profile data");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProfileData();
+  }, [dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,11 +93,31 @@ function Profile() {
 
       const result = await response.json();
       toast.success(result.message);
-      dispatch(login({ ...result.data }));
+
+      // Update Redux store with new data
+      dispatch(
+        login({
+          ...result.data,
+          province: result.data.address?.province,
+          city: result.data.address?.city,
+          remainingAddress: result.data.address?.remainingAddress,
+          notes: result.data.address?.notes,
+        })
+      );
     } catch (error) {
       console.log(error);
       toast.error("Failed to update profile");
     }
+  }
+
+  if (isLoading) {
+    return (
+      <main className="px-4 sm:px-6 lg:px-8 py-8 max-w-7xl mx-auto">
+        <div className="text-center">
+          <p>Loading profile data...</p>
+        </div>
+      </main>
+    );
   }
 
   return (

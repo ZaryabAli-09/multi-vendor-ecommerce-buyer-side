@@ -21,6 +21,47 @@ const CheckoutPage = () => {
   const [productDetails, setProductDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log(orderData);
+
+  // Fetch profile data when component mounts
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/buyer/profile`,
+          {
+            credentials: "include",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile data");
+        }
+
+        const result = await response.json();
+        console.log(result);
+        // Update form data with API response
+        setOrderData((prev) => ({
+          ...prev, // Keep all existing orderData
+          shippingAddress: {
+            ...prev.shippingAddress, // Keep any existing shippingAddress fields
+            street: result.data?.remainingAddress || "",
+            city: result.data?.city || "",
+            state: result.data?.province || "",
+            country: "Pakistan" || prev.shippingAddress.country, // Fallback to existing if needed
+          },
+        }));
+      } catch (error) {
+        console.error("Profile fetch error:", error);
+        toast.error("Failed to load profile data");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
+
   // Calculate order totals
   const orderTotals = productDetails.reduce(
     (totals, item) => {
@@ -285,8 +326,6 @@ const CheckoutPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
-      <h1 className="text-3xl font-bold mb-8">Checkout</h1>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Order Summary */}
         <div className="md:col-span-2 bg-white p-6 rounded-lg shadow">
@@ -401,7 +440,9 @@ const CheckoutPage = () => {
                   className="w-full p-2 border rounded-md text-sm"
                   required
                 >
-                  <option value="">Select Province</option>
+                  <option value="">
+                    {orderData.shippingAddress.state || "Select Province"}
+                  </option>
                   {pakistanProvinces.map((province) => (
                     <option key={province} value={province}>
                       {province}

@@ -6,6 +6,7 @@ import { setProducts, addProducts } from "../features/productsFeedSlice.js";
 function ProductsFeed() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.productsFeed.products);
+  console.log(products);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -73,7 +74,7 @@ function ProductsFeed() {
       )}
 
       {hasMore && !isLoading && (
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center my-8">
           <button
             onClick={handleLoadMore}
             className="px-6 py-2 bg-black text-white rounded-md hover:bg-primary-dark transition"

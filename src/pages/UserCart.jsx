@@ -285,132 +285,126 @@ function UserCart() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
-          My Cart
-        </h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
+        My Cart
+      </h1>
 
-        {cartItems.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20">
-            <p className="text-lg sm:text-xl text-gray-600 mb-6">
-              You currently have nothing saved to your Cart.
-            </p>
-            <Link
-              to="/"
-              className="px-6 py-3 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
-            >
-              Continue Shopping
-            </Link>
-          </div>
-        ) : (
-          <div className="flex flex-col lg:flex-row gap-6">
-            {/* Cart Items Section */}
-            <div className="flex-1">
-              {Object.entries(cartItemsGroupedByStore).map(
-                ([storeId, storeItems]) => (
-                  <div
-                    key={storeId}
-                    className={`bg-white rounded-lg shadow-sm p-4 mb-4 ${
-                      (selectedStoreId && selectedStoreId !== storeId) ||
-                      (selectedItemsStoreId && selectedItemsStoreId !== storeId)
-                        ? "opacity-50 pointer-events-none"
-                        : ""
-                    }`}
-                  >
-                    <div className="flex items-center mb-4">
-                      <input
-                        type="checkbox"
-                        checked={selectedStoreId === storeId}
-                        onChange={() => toggleStoreSelect(storeId)}
-                        className="h-5 w-5 mr-4"
-                      />
-                      <Link
-                        to={`/store/${storeId}?tab=products`}
-                        className="flex items-center hover:text-blue-600 transition-colors"
-                      >
-                        <MdOutlineStorefront className="text-xl mr-2" />
-                        <span className="font-semibold">
-                          {brandNames[storeId]}
-                          <FaAngleRight className="ml-1 inline" />
-                        </span>
-                      </Link>
-                    </div>
-
-                    <div className="space-y-4">
-                      {storeItems.map((item) => (
-                        <CartItemCard
-                          key={item._id}
-                          id={item._id}
-                          isChecked={selectedItems.includes(item._id)}
-                          image={item.variant.images[0]?.url}
-                          productId={item.product._id}
-                          variantId={item.variant._id}
-                          productName={item.product.name}
-                          size={item.variant.size}
-                          color={item.variant.color}
-                          price={item.variant.price}
-                          discountedPrice={item.variant.discountedPrice}
-                          quantity={item.quantity}
-                          toggleItemSelect={toggleItemSelect}
-                          handleRemoveFromCart={handleRemoveFromCart}
-                          incrementCartItemCount={incrementCartItemCount}
-                          decrementCartItemCount={decrementCartItemCount}
-                        />
-                      ))}
-                    </div>
+      {cartItems.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-20">
+          <p className="text-lg sm:text-xl text-gray-600 mb-6">
+            You currently have nothing saved to your Cart.
+          </p>
+          <Link
+            to="/"
+            className="px-6 py-3 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+          >
+            Continue Shopping
+          </Link>
+        </div>
+      ) : (
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Cart Items Section */}
+          <div className="flex-1">
+            {Object.entries(cartItemsGroupedByStore).map(
+              ([storeId, storeItems]) => (
+                <div
+                  key={storeId}
+                  className={`bg-white rounded-lg shadow-sm p-4 mb-4 ${
+                    (selectedStoreId && selectedStoreId !== storeId) ||
+                    (selectedItemsStoreId && selectedItemsStoreId !== storeId)
+                      ? "opacity-50 pointer-events-none"
+                      : ""
+                  }`}
+                >
+                  <div className="flex items-center mb-4">
+                    <input
+                      type="checkbox"
+                      checked={selectedStoreId === storeId}
+                      onChange={() => toggleStoreSelect(storeId)}
+                      className="h-5 w-5 mr-4"
+                    />
+                    <Link
+                      to={`/store/${storeId}?tab=products`}
+                      className="flex items-center hover:text-blue-600 transition-colors"
+                    >
+                      <MdOutlineStorefront className="text-xl mr-2" />
+                      <span className="font-semibold">
+                        {brandNames[storeId]}
+                        <FaAngleRight className="ml-1 inline" />
+                      </span>
+                    </Link>
                   </div>
-                )
-              )}
-            </div>
 
-            {/* Order Summary - Sticky on desktop, fixed bottom on mobile */}
-            <div className="lg:sticky lg:top-6 lg:h-fit fixed bottom-0 left-0 right-0  bg-white border-t lg:border-t-0 lg:border-l border-gray-200 lg:w-80 p-4 lg:p-6 shadow-lg lg:shadow-sm lg:rounded-lg z-0">
-              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
-              <div className="space-y-3 mb-6">
-                <div className="flex justify-between">
-                  <span>Subtotal</span>
-                  <span>Rs {formatAmount(selectedItemsTotalAmount)}</span>
+                  <div className="space-y-4">
+                    {storeItems.map((item) => (
+                      <CartItemCard
+                        key={item._id}
+                        id={item._id}
+                        isChecked={selectedItems.includes(item._id)}
+                        image={item.variant.images[0]?.url}
+                        productId={item.product._id}
+                        variantId={item.variant._id}
+                        productName={item.product.name}
+                        size={item.variant.size}
+                        color={item.variant.color}
+                        price={item.variant.price}
+                        discountedPrice={item.variant.discountedPrice}
+                        quantity={item.quantity}
+                        toggleItemSelect={toggleItemSelect}
+                        handleRemoveFromCart={handleRemoveFromCart}
+                        incrementCartItemCount={incrementCartItemCount}
+                        decrementCartItemCount={decrementCartItemCount}
+                      />
+                    ))}
+                  </div>
                 </div>
-                <div className="flex justify-between text-green-600">
-                  <span>Saved</span>
-                  <span>Rs {formatAmount(totalAmountSaved)}</span>
-                </div>
-              </div>
-
-              <button
-                onClick={() => {
-                  if (selectedItems.length === 0) {
-                    toast.error("Please select items to checkout.");
-                    return;
-                  }
-                  if (selectedStoreId === null) {
-                    toast.error("Please select a store to checkout.");
-                    return;
-                  }
-
-                  const orderItems = {
-                    orderItems: cartItems
-                      .filter((item) => selectedItems.includes(item._id))
-                      .map((item) => ({
-                        product: item.product._id,
-                        variantId: item.variant._id,
-                        quantity: item.quantity,
-                      })),
-                  };
-                  window.location.href = `/order/checkout?orderItems=${encodeURIComponent(
-                    JSON.stringify(orderItems)
-                  )}`;
-                }}
-                className="w-full bg-black hover:bg-gray-800 text-white py-3 rounded-md text-lg font-semibold transition-colors"
-              >
-                Checkout ({selectedItemsCount})
-              </button>
-            </div>
+              )
+            )}
           </div>
-        )}
-      </div>
-    </main>
+
+          {/* Order Summary - Sticky on desktop, fixed bottom on mobile */}
+          <div className="lg:sticky lg:top-6 lg:h-fit fixed bottom-0 left-0 right-0  bg-white border-t lg:border-t-0 lg:border-l border-gray-200 lg:w-80 p-4 lg:p-6 shadow-lg lg:shadow-sm lg:rounded-lg z-0">
+            <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+            <div className="space-y-3 mb-6">
+              <div className="flex justify-between">
+                <span>Subtotal</span>
+                <span>Rs {formatAmount(selectedItemsTotalAmount)}</span>
+              </div>
+              <div className="flex justify-between text-green-600">
+                <span>Saved</span>
+                <span>Rs {formatAmount(totalAmountSaved)}</span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                if (selectedItems.length === 0) {
+                  toast.error("Please select items to checkout.");
+                  return;
+                }
+
+                const orderItems = {
+                  orderItems: cartItems
+                    .filter((item) => selectedItems.includes(item._id))
+                    .map((item) => ({
+                      product: item.product._id,
+                      variantId: item.variant._id,
+                      quantity: item.quantity,
+                    })),
+                };
+                window.location.href = `/order/checkout?orderItems=${encodeURIComponent(
+                  JSON.stringify(orderItems)
+                )}`;
+              }}
+              className="w-full bg-black hover:bg-gray-800 text-white py-3 rounded-md text-lg font-semibold transition-colors"
+            >
+              Checkout ({selectedItemsCount})
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

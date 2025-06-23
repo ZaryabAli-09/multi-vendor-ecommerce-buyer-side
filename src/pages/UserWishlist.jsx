@@ -51,8 +51,10 @@ function UserWishlist() {
   }
 
   return (
-    <main className="px-6 mb-10">
-      <h1 className="text-center py-7 text-2xl font-bold">My Wishlist</h1>
+    <main className=" px-4 sm:px-6 lg:px-8 py-6">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
+        My Wishlist
+      </h1>
 
       {wishlistItems.length === 0 && (
         <div>

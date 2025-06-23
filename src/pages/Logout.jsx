@@ -34,12 +34,12 @@ function Logout() {
   }
 
   return (
-    <main>
-      <h1 className="mt-44 text-center text-3xl font-medium">
+    <main className="flex flex-col justify-center items-center h-96 px-4">
+      <h1 className=" text-center text-3xl font-medium">
         Are you sure you want to logout?
       </h1>
       <button
-        className="text-2xl px-8 py-3 bg-black text-white block mx-auto mt-8 rounded-md"
+        className="text-2xl px-8 py-3 bg-black mb-5 text-white block mx-auto mt-8 rounded-md"
         onClick={logoutUser}
       >
         Yes, I'm sure

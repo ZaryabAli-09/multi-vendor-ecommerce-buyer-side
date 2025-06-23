@@ -11,7 +11,7 @@ import { RiBox3Line } from "react-icons/ri";
 function ProfileDropDown({ isProfileDDVisible }) {
   return (
     <div
-      className={`absolute z-[2] top-[52px] w-[165px] right-[50%] translate-x-[50%] text-sm font-medium flex flex-col text-gray-500 bg-white shadow-md border-[1px]  ${
+      className={`absolute z-20 top-[52px] w-[165px] right-[50%] translate-x-[50%] text-sm font-medium flex flex-col text-gray-500 bg-white shadow-md border-[1px]  ${
         isProfileDDVisible ? "block" : "hidden"
       }`}
     >

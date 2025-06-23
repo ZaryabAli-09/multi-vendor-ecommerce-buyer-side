@@ -42,6 +42,7 @@ import CheckoutPage from "./pages/CheckoutPage.jsx";
 import CheckoutLayout from "./components/CheckoutLayout.jsx";
 import SuccessPage from "./pages/StripePaymentSuccess.jsx";
 import FailurePage from "./pages/StripePaymentFailure.jsx";
+import WithoutFooterLayout from "./components/WithoutFooterLayout.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -100,10 +101,6 @@ function App() {
           element: <ProductList />,
         },
 
-        {
-          path: "/my-messages/:sellerId?",
-          element: <MyMessages />,
-        },
         {
           path: "about",
           element: <AboutUs />,
@@ -172,6 +169,16 @@ function App() {
         {
           path: "payment-failure",
           element: <FailurePage />,
+        },
+      ],
+    },
+    {
+      path: "",
+      element: <WithoutFooterLayout />,
+      children: [
+        {
+          path: "my-messages/:sellerId?",
+          element: <MyMessages />,
         },
       ],
     },
