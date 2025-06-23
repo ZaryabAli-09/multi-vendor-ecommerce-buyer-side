@@ -56,7 +56,7 @@ function HomeSlider() {
   }, [displayedImgIndex]);
 
   return (
-    <div className="w-[50vw] h-[275px] rounded-md mt-12 mx-auto relative overflow-hidden">
+    <div className="w-[90vw] h-[240px]  md:w-[50vw] md:h-[275px] rounded-md mt-12 mx-auto relative overflow-hidden">
       <div
         className={`flex w-full h-full ${
           isSliderTransitioning ? "transition-all" : ""
