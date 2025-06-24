@@ -21,7 +21,7 @@ function ProductCard({
       to={`/products/single/${id}`}
     >
       {/* product img part */}
-      <div className="h-52  md:h-64 lg:h-72">
+      <div className="h-52  md:h-64 lg:h-80 w-full relative overflow-hidden rounded-t-md">
         <img
           src={isHovering && images.length > 1 ? images[1].url : images[0].url}
           alt={name}

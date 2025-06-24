@@ -157,28 +157,6 @@ function StoreAbout({ storeId }) {
                 </div>
               </div>
 
-              {/* Bank Details */}
-              <div className="bg-white rounded-lg shadow-md p-4">
-                <h3 className="flex items-center text-lg font-semibold text-gray-800 mb-3">
-                  <BsBank2 className="mr-2" />
-                  Bank Details
-                </h3>
-                <div className="border-t border-gray-200 pt-3 space-y-2">
-                  <p className="text-gray-700">
-                    <strong>Bank:</strong>{" "}
-                    {sellerDetails.bankDetails?.bankName || "N/A"}
-                  </p>
-                  <p className="text-gray-700">
-                    <strong>Account #:</strong>{" "}
-                    {sellerDetails.bankDetails?.accountNumber || "N/A"}
-                  </p>
-                  <p className="text-gray-700">
-                    <strong>Holder:</strong>{" "}
-                    {sellerDetails.bankDetails?.accountHolderName || "N/A"}
-                  </p>
-                </div>
-              </div>
-
               {/* Social Links */}
               <div className="bg-white rounded-lg shadow-md p-4">
                 <h3 className="text-lg font-semibold text-gray-800 mb-3">

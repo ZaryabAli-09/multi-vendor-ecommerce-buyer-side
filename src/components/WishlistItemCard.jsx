@@ -53,7 +53,7 @@ function ProductCard({
     <div className="border-2 w-[45%] xs:w-[30%] sm:w-[32%] md:w-[31%] lg:w-[23%] xl:w-[19%] rounded-md hover:shadow-md hover:shadow-gray-200 transition-all duration-200 ">
       {/* product img part */}
       <div
-        className="relative aspect-square"
+        className="h-52  md:h-64 lg:h-80 w-full relative overflow-hidden rounded-t-md"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
