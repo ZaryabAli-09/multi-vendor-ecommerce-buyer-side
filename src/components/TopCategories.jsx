@@ -11,33 +11,69 @@ import topsImg from "../assets/images/tops.png";
 import watchesImg from "../assets/images/watches.png";
 import pantsImg from "../assets/images/pants.png";
 import dressesImg from "../assets/images/dresses.png";
-
+import mensGif from "../assets/images/mens.gif";
+import womensGif from "../assets/images/womens.gif";
+import kidsGif from "../assets/images/kids.gif";
+import MensTshirt from "../assets/images/MenTshirt.gif";
+import MensFootwear from "../assets/images/menfootwear.gif";
+import MensJacket from "../assets/images/mensjacket.gif";
+import MensTrouser from "../assets/images/mentrousers.gif";
+import womenFootwear from "../assets/images/womenfootwear.gif";
+import WomenDresses from "../assets/images/Womendresses.gif";
+import WomenBottom from "../assets/images/WomensBottom.gif";
+import WomenKurta from "../assets/images/Kurta.gif";
+import WomenDupatta from "../assets/images/dupatta.jpg";
 function TopCategories() {
   const categories = [
-    { name: "Women", image: womenImg, path: "/products/Women" },
-    { name: "Men", image: menImg, path: "/products/Men" },
-    { name: "Kids", image: kidsImg, path: "/products/Kids" },
+    { name: "Women", image: womensGif, path: "/products/Women" },
+    { name: "Men", image: mensGif, path: "/products/Men" },
+    { name: "Kids", image: kidsGif, path: "/products/Kids" },
     {
       name: "Men T-Shirts",
-      image: tshirtsImg,
+      image: MensTshirt,
       path: "/products/Men/Topwear/T Shirts",
     },
-    { name: "Men Footwear", image: shoesImg, path: "/products/Men/Footwear" },
+    {
+      name: "Men Footwear",
+      image: MensFootwear,
+      path: "/products/Men/Footwear",
+    },
     {
       name: "Men Jackets",
-      image: jacketsImg,
+      image: MensJacket,
       path: "/products/Men/Topwear/Jackets",
     },
-    { name: "Bags", image: bagsImg, path: "" },
-    { name: "Watches", image: watchesImg, path: "" },
-    { name: "Pants", image: pantsImg, path: "" },
     {
-      name: "Dresses",
-      image: dressesImg,
+      name: "Mens Trousers",
+      image: MensTrouser,
+      path: "/products/Men/BottomWear/Trousers",
+    },
+
+    {
+      name: "Women Dupatta's",
+      image: WomenDupatta,
+      path: "/products/Women/Topwear/Duppata",
+    },
+    {
+      name: "Women Footwear",
+      image: womenFootwear,
+      path: "/products/Women/Footwear",
+    },
+    {
+      name: "Women Dresses",
+      image: WomenDresses,
       path: "/products/Women/Topwear/Dresses",
     },
-    { name: "Tops", image: topsImg, path: "" },
-    { name: "Slippers", image: slippersImg, path: "" },
+    {
+      name: "Women Bottom",
+      image: WomenBottom,
+      path: "/products/Women/BottomWear",
+    },
+    {
+      name: "Women Kurta",
+      image: WomenKurta,
+      path: "/products/Women/Topwear/Kurta",
+    },
   ];
 
   return (
