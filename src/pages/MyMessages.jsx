@@ -36,6 +36,11 @@ const MyMessages = () => {
   };
 
   useEffect(() => {
+    if (!buyerId) {
+      toast.error("You must be logged in to access messages.");
+      navigate("/auth/login");
+      return;
+    }
     socket.current = io("https://ecom-backend-5l3d.onrender.com", {
       withCredentials: true,
       transports: ["websocket"],
