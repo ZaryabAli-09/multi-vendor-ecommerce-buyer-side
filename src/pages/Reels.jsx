@@ -154,21 +154,24 @@ const UserReels = () => {
             </Link>
             <div
               key={index}
-              className="snap-start overflow-y-hidden py-10  h-screen w-screen flex items-center justify-center relative bg-black/30 backdrop-blur-lg
+              className="snap-start overflow-y-hidden py-0 px-0 md:py-8  h-screen w-screen flex items-center justify-center relative bg-black/30 backdrop-blur-lg
 "
             >
               {/* Centered vertical video */}
-              <div className="aspect-[9/16] w-[360px]  sm:w-[400px] md:w-[480px] lg:w-[540px] xl:w-[600px] h-full flex items-center justify-center relative">
+              <div className="aspect-[9/16] w-full  sm:w-[360px] md:w-[400px] lg:w-[380px] xl:w-[400px] h-full flex items-center justify-center relative">
                 <video
                   src={reel.videoUrl}
                   className="h-full w-full  object-cover  rounded-lg shadow-lg"
                   loop
                   playsInline
-                  controls={false}
+                  controls={true}
                 />
 
                 {/* Overlay buttons */}
-                <div className="absolute right-3 bottom-30 z-10 flex flex-col items-center  text-white">
+                <div
+                  className="absolute right-3 bottom-30 z-10 flex flex-col items-center gap-1
+ text-white"
+                >
                   <button
                     onClick={() => handleReelsLike(reel._id)}
                     className="hover:scale-150 transition text-2xl"
