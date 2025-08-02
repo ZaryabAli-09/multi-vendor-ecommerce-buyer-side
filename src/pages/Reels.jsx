@@ -187,7 +187,7 @@ const UserReels = () => {
                 </div>
 
                 {/* Video info */}
-                <div className="absolute bottom-4 left-4 text-white font-bold">
+                <div className="absolute bottom-10 md:bottom-4 left-4 text-white font-bold">
                   <p className="font-semibold text-base">
                     @{reel?.uploadedBy?.brandName || "seller"}
                   </p>
