@@ -164,6 +164,7 @@ const UserReels = () => {
                   className="h-full w-full  object-cover  rounded-lg shadow-lg"
                   loop
                   playsInline
+                  autoPlay
                   controls={true}
                 />
 
