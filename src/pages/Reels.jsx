@@ -165,7 +165,7 @@ const UserReels = () => {
                   loop
                   playsInline
                   autoPlay
-                  controls={true}
+                  controls={false}
                 />
 
                 {/* Overlay buttons */}
