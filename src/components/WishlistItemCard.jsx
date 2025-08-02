@@ -45,7 +45,7 @@ function ProductCard({
         updateWishlistItemsCount({ wishlistItemsCount: result.data.length })
       );
     } catch (error) {
-      console.log(error);
+      toast.error("Failed to remove item from wishlist");
     }
   }
 

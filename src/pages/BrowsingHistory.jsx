@@ -25,7 +25,7 @@ function BrowsingHistory() {
         const result = await response.json();
         setBrowsingHistoryItems(result.data.reverse());
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setIsLoading(false);
       }

@@ -66,7 +66,6 @@ function Login() {
       }
 
       const result = await response.json();
-      console.log(result);
 
       dispatch(
         login({
@@ -81,7 +80,6 @@ function Login() {
       navigate("/");
     } catch (error) {
       alert(error.message);
-      console.log(error);
     }
   }
 

@@ -8,12 +8,12 @@ function TermsOfService() {
 
       <div className="space-y-6">
         <section>
-          <h2 className="text-xl font-semibold mb-2">1. About WEARLY</h2>
+          <h2 className="text-xl font-semibold mb-2">1. About SmartStyler</h2>
           <p className="text-gray-700">
-            WEARLY is a multivendor ecommerce platform that connects independent
-            fashion sellers with customers worldwide. We provide the platform
-            but are not directly involved in transactions between buyers and
-            sellers.
+            SmartStyler is a multivendor ecommerce platform that connects
+            independent fashion sellers with customers worldwide. We provide the
+            platform but are not directly involved in transactions between
+            buyers and sellers.
           </p>
         </section>
 
@@ -32,10 +32,10 @@ function TermsOfService() {
         <section>
           <h2 className="text-xl font-semibold mb-2">3. Transactions</h2>
           <p className="text-gray-700">
-            Payments are processed through our secure payment gateway. WEARLY
-            holds funds in escrow until order completion. Refunds and returns
-            are handled according to individual seller policies within the
-            bounds of our platform guidelines.
+            Payments are processed through our secure payment gateway.
+            SmartStyler holds funds in escrow until order completion. Refunds
+            and returns are handled according to individual seller policies
+            within the bounds of our platform guidelines.
           </p>
         </section>
 
@@ -45,7 +45,7 @@ function TermsOfService() {
           </h2>
           <p className="text-gray-700">
             Sellers retain ownership of their product designs and brand assets.
-            By listing on WEARLY, sellers grant us a license to display and
+            By listing on SmartStyler, sellers grant us a license to display and
             market their products. Buyers may not reproduce or resell products
             without permission.
           </p>
@@ -56,9 +56,9 @@ function TermsOfService() {
             5. Limitation of Liability
           </h2>
           <p className="text-gray-700">
-            WEARLY is not liable for disputes between buyers and sellers, though
-            we may mediate. We are not responsible for any indirect, incidental,
-            or consequential damages arising from platform use.
+            SmartStyler is not liable for disputes between buyers and sellers,
+            though we may mediate. We are not responsible for any indirect,
+            incidental, or consequential damages arising from platform use.
           </p>
         </section>
 
@@ -66,7 +66,7 @@ function TermsOfService() {
           <h2 className="text-xl font-semibold mb-2">6. Governing Law</h2>
           <p className="text-gray-700">
             These terms shall be governed by the laws of the jurisdiction where
-            WEARLY is registered. Any disputes shall be resolved through
+            SmartStyler is registered. Any disputes shall be resolved through
             arbitration in this jurisdiction.
           </p>
         </section>

@@ -25,7 +25,9 @@ function CheckoutHeader() {
 
           {/* Centered Title with Badge */}
           <div className="flex items-center">
-            <h1 className="text-lg font-semibold text-gray-800 mr-2">WEARLY</h1>
+            <h1 className="text-lg font-semibold text-gray-800 mr-2">
+              SmartStyler
+            </h1>
             <div className="flex items-center bg-blue-50 px-2 py-1 rounded-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

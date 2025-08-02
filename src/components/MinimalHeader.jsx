@@ -4,7 +4,7 @@ function MinimalHeader() {
   return (
     <header className="text-center py-7 bg-[#F6F6F4]">
       <Link to="/" className="text-4xl font-bold tracking-wide">
-        WEARLY
+        SmartStyler
       </Link>
     </header>
   );

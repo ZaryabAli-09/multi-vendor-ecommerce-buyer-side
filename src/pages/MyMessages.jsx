@@ -116,7 +116,6 @@ const MyMessages = () => {
         }
       } catch (error) {
         toast.error(error.message);
-        console.log(error);
       } finally {
         setLoading(false);
       }

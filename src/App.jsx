@@ -43,7 +43,10 @@ import CheckoutLayout from "./components/CheckoutLayout.jsx";
 import SuccessPage from "./pages/StripePaymentSuccess.jsx";
 import FailurePage from "./pages/StripePaymentFailure.jsx";
 import WithoutFooterLayout from "./components/WithoutFooterLayout.jsx";
-
+import UserReels from "./pages/Reels.jsx";
+import WithoutHeaderAndFooterLayout from "./components/WithoutHeaderAndFooterLayout.jsx";
+import WhatsNewPopup from "./components/WhatsNew.jsx";
+import MyLikedReels from "./pages/MyLikedReels.jsx";
 function App() {
   const dispatch = useDispatch();
 
@@ -92,6 +95,11 @@ function App() {
           path: "browsing-history",
           element: <BrowsingHistory />,
         },
+        {
+          path: "my-liked-reels",
+          element: <MyLikedReels />,
+        },
+
         {
           path: "my-orders",
           element: <MyOrders />,
@@ -170,6 +178,20 @@ function App() {
           path: "payment-failure",
           element: <FailurePage />,
         },
+        {
+          path: "reels",
+          element: <UserReels />,
+        },
+      ],
+    },
+    {
+      path: "/reels",
+      element: <WithoutHeaderAndFooterLayout />,
+      children: [
+        {
+          path: "all",
+          element: <UserReels />,
+        },
       ],
     },
     {
@@ -197,12 +219,10 @@ function App() {
 
         if (!response.ok) {
           const result = await response.json();
-          // console.log(result);
           return;
         }
 
         const result = await response.json();
-        console.log(result.data);
         dispatch(login({ ...result.data }));
       } catch (error) {
         console.log(error);
@@ -221,7 +241,10 @@ function App() {
       <>
         <Toaster></Toaster>
 
-        <RouterProvider router={router} />
+        <RouterProvider router={router}>
+          {" "}
+          <WhatsNewPopup />
+        </RouterProvider>
       </>
     );
   }

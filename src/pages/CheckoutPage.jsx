@@ -21,8 +21,6 @@ const CheckoutPage = () => {
   const [productDetails, setProductDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(orderData);
-
   // Fetch profile data when component mounts
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -39,7 +37,6 @@ const CheckoutPage = () => {
         }
 
         const result = await response.json();
-        console.log(result);
         // Update form data with API response
         setOrderData((prev) => ({
           ...prev, // Keep all existing orderData

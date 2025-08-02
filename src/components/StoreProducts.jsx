@@ -27,10 +27,8 @@ function StoreProducts({ storeId }) {
 
         const result = await response.json();
         dispatch(setProducts(result.data));
-        // console.log(result.data);
       } catch (error) {
-        console.log(error);
-        // alert(error.message);
+        console.error(error);
       }
     }
 
@@ -41,7 +39,6 @@ function StoreProducts({ storeId }) {
     <main className="px-6">
       <div className="flex flex-wrap gap-3">
         {products.map((product) => {
-          // console.log(product);
           return (
             <ProductCard
               sold={product.variants[0].sold}

@@ -51,7 +51,7 @@ function FullHeader() {
     <>
       <header className="hidden lg:flex items-center justify-between px-8 border-b-[1px] shadow-sm">
         <Link to="/" className="text-xl lg:text-3xl font-bold">
-          WEARLY
+          SmartStyler
         </Link>
 
         <CategoryNavigation />
@@ -106,7 +106,7 @@ function FullHeader() {
           <div className="flex items-center gap-x-4">
             <CategoryNavigation />
             <Link to="/" className="text-xl lg:text-3xl font-bold">
-              WEARLY
+              SmartStyler
             </Link>
           </div>
 

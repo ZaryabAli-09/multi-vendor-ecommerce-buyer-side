@@ -5,7 +5,9 @@ function AboutUs() {
   return (
     <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">About WEARLY</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          About SmartStyler
+        </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Connecting all brands with conscious consumers in pakistan.
         </p>
@@ -15,8 +17,8 @@ function AboutUs() {
         <div>
           <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
           <p className="text-gray-600 mb-4">
-            Founded in 2025, WEARLY began as a small platform for independent
-            fashion designers/brands to showcase their work.
+            Founded in 2025, SmartStyler began as a small platform for
+            independent fashion designers/brands to showcase their work.
           </p>
           <p className="text-gray-600">
             Our mission is to democratize fashion by removing barriers between
@@ -26,7 +28,7 @@ function AboutUs() {
         <div className="bg-gray-100 rounded-lg overflow-hidden h-80">
           {/* Placeholder for an image */}
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-r from-purple-400 to-indigo-500">
-            <span className="text-white text-xl">WEARLY Team</span>
+            <span className="text-white text-xl">SmartStyler Team</span>
           </div>
         </div>
       </div>

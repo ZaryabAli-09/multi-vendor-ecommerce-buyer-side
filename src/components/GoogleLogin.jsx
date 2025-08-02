@@ -96,7 +96,6 @@ const GoogleLogin = () => {
       }
 
       toast.success("login successful", { id: loadingToast });
-      console.log("success dtaa", data);
 
       dispatch(
         login({

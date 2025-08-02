@@ -10,10 +10,10 @@ function PrivacyPolicy() {
         <section>
           <h2 className="text-xl font-semibold mb-2">1. Introduction</h2>
           <p className="text-gray-700">
-            Welcome to WEARLY, a multivendor ecommerce platform. We respect your
-            privacy and are committed to protecting your personal data. This
-            privacy policy will inform you about how we look after your personal
-            data when you visit our platform.
+            Welcome to SmartStyler, a multivendor ecommerce platform. We respect
+            your privacy and are committed to protecting your personal data.
+            This privacy policy will inform you about how we look after your
+            personal data when you visit our platform.
           </p>
         </section>
 

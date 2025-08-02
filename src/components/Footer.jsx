@@ -16,10 +16,10 @@ function Footer() {
           {/* Logo and about */}
           <div className="space-y-4">
             <div className="flex items-center">
-              <span className="text-2xl font-bold">WEARLY</span>
+              <span className="text-2xl font-bold">SmartStyler</span>
             </div>
             <p className="text-sm">
-              WEARLY is a multivendor ecommerce platform where independent
+              SmartStyler is a multivendor ecommerce platform where independent
               sellers can showcase their fashion products to customers
               worldwide.
             </p>
@@ -121,7 +121,7 @@ function Footer() {
         </div>
 
         <div className="border-t border-gray-300 mt-8 pt-6 text-sm text-center">
-          <p>© {new Date().getFullYear()} WEARLY. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} SmartStyler. All rights reserved.</p>
         </div>
       </div>
     </footer>

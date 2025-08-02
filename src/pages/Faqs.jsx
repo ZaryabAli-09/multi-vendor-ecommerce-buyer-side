@@ -20,7 +20,7 @@ function FAQs() {
       answer: "We accept stripe payments and cash on delivery system for now.",
     },
     {
-      question: "How can I become a seller on WEARLY?",
+      question: "How can I become a seller on SmartStyler?",
       answer:
         "Click on 'Become a Seller' in the footer or navigation menu. You'll need to complete an application form with your business details. Once approved, you can set up your store, upload products, and start selling.",
     },
@@ -35,7 +35,7 @@ function FAQs() {
         "Once your order ships, you'll receive a confirmation email with tracking information. You can also view your order status and tracking information by logging into your account and visiting the 'My Orders' section.",
     },
     {
-      question: "How does WEARLY protect my personal information?",
+      question: "How does SmartStyler protect my personal information?",
       answer:
         "We use industry-standard encryption for all data transmission and storage. Your payment information is processed through secure payment gateways and we never store full credit card details on our servers. Please see our Privacy Policy for more details.",
     },

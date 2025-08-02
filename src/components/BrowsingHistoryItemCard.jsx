@@ -39,7 +39,7 @@ function BrowsingHistoryItemCard({
       const result = await response.json();
       setBrowsingHistoryItems(result.data.reverse());
     } catch (error) {
-      console.log(error);
+      toast.error("Failed to remove item from browsing history");
     }
   }
 

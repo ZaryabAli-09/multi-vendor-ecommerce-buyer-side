@@ -6,7 +6,6 @@ import { setProducts, addProducts } from "../features/productsFeedSlice.js";
 function ProductsFeed() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.productsFeed.products);
-  console.log(products);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +32,7 @@ function ProductsFeed() {
         }
         setHasMore(result.data.hasMore);
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching products:", error);
       } finally {
         setIsLoading(false);
       }

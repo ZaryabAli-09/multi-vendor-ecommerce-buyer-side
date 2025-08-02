@@ -3,7 +3,6 @@ import React from "react";
 import StarRating from "./StarRating";
 
 function ProductReviews({ reviews }) {
-  console.log(reviews);
   return (
     <div className="mt-9">
       {reviews.map((review, i) => {
