@@ -12,8 +12,10 @@ const UserReels = () => {
   const [userLikedReels, setUserLikedReels] = useState([]);
 
   const containerRef = useRef(null);
-  const observer = useRef(null);
+  const videoObserver = useRef(null);
+  const scrollObserver = useRef(null);
   const lastReelRef = useRef(null);
+  const loadedReelIds = useRef(new Set());
   const userId = useSelector((state) => state.user?.id);
 
   // 🔍 Fetch Buyer Likes
@@ -52,9 +54,15 @@ const UserReels = () => {
       const data = await res.json();
       const newReels = data.data || [];
 
-      if (newReels.length === 0) setHasMore(false);
+      // Filter duplicates
+      const filtered = newReels.filter(
+        (reel) => !loadedReelIds.current.has(reel._id)
+      );
+      filtered.forEach((reel) => loadedReelIds.current.add(reel._id));
 
-      setReels((prev) => [...prev, ...newReels]);
+      if (filtered.length === 0 || newReels.length < 5) setHasMore(false);
+
+      setReels((prev) => [...prev, ...filtered]);
       setLoading(false);
       setLoadingMore(false);
     } catch (err) {
@@ -106,7 +114,7 @@ const UserReels = () => {
   // 👀 Play/Pause Visible Videos
   useEffect(() => {
     const options = { threshold: 0.75 };
-    observer.current = new IntersectionObserver((entries) => {
+    videoObserver.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const video = entry.target;
         if (entry.isIntersecting) video.play().catch(() => {});
@@ -115,30 +123,28 @@ const UserReels = () => {
     }, options);
 
     const videos = containerRef.current?.querySelectorAll("video");
-    videos?.forEach((video) => observer.current.observe(video));
+    videos?.forEach((video) => videoObserver.current.observe(video));
 
     return () => {
-      videos?.forEach((video) => observer.current.unobserve(video));
+      videos?.forEach((video) => videoObserver.current.unobserve(video));
     };
   }, [reels]);
 
-  // 🧠 Observe Last Reel for Pagination
+  // 🧠 Infinite Scroll Observer
   const lastReelElementRef = useCallback(
     (node) => {
       if (loadingMore || !hasMore) return;
 
-      if (lastReelRef.current) observer.current.unobserve(lastReelRef.current);
-      lastReelRef.current = node;
+      if (scrollObserver.current) scrollObserver.current.disconnect();
 
-      if (node) {
-        observer.current.observe(node);
-        observer.current.callback = (entries) => {
-          if (entries[0].isIntersecting) {
-            setLoadingMore(true);
-            setPage((prev) => prev + 1);
-          }
-        };
-      }
+      scrollObserver.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          setLoadingMore(true);
+          setPage((prev) => prev + 1);
+        }
+      });
+
+      if (node) scrollObserver.current.observe(node);
     },
     [loadingMore, hasMore]
   );
