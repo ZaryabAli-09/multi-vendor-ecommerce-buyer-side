@@ -177,6 +177,7 @@ const UserReels = () => {
           >
             <div className="aspect-[9/16] w-full sm:w-[360px] md:w-[400px] lg:w-[380px] xl:w-[400px] h-full flex items-center justify-center relative">
               <video
+                preload="auto"
                 src={reel.videoUrl}
                 className="h-full w-full object-cover rounded-lg shadow-lg"
                 loop
