@@ -5,7 +5,7 @@ import { LuHistory } from "react-icons/lu";
 import { LuMessageSquare } from "react-icons/lu";
 import { VscAccount } from "react-icons/vsc";
 import { RiBox3Line } from "react-icons/ri";
-import { CiHeart } from "react-icons/ci";
+import { FaRegHeart } from "react-icons/fa";
 
 // * with icons *
 
@@ -51,7 +51,7 @@ function ProfileDropDown({ isProfileDDVisible }) {
         to="/my-liked-reels"
         className="flex items-center gap-2 px-3 py-2  hover:text-black hover:bg-gray-200"
       >
-        <CiHeart className="relative top-[0.7px] text-[15px]" />
+        <FaRegHeart className="relative top-[0.7px] text-[15px] font-bold" />
         <span>My Liked Reels</span>
       </Link>
 
