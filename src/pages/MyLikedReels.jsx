@@ -93,7 +93,7 @@ const MyLikedReels = () => {
                 onMouseLeave={() => setHoveredReelId(null)}
               >
                 <video
-                  className="w-full h-96 object-cover"
+                  className="w-full h-96 object-contain bg-black"
                   src={reel.videoUrl}
                   muted
                   controls={true}
