@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { FaPlay, FaPause } from "react-icons/fa";
 
 const UserReels = () => {
   const [reels, setReels] = useState([]);
@@ -17,6 +18,10 @@ const UserReels = () => {
   const lastReelRef = useRef(null);
   const loadedReelIds = useRef(new Set());
   const userId = useSelector((state) => state.user?.id);
+
+  const videoRefs = useRef([]);
+  const [visibleIconIndex, setVisibleIconIndex] = useState(null);
+  const [videoStates, setVideoStates] = useState({}); // { 0: "playing", 1: "paused" }
 
   // 🔍 Fetch Buyer Likes
   const fetchBuyer = async () => {
@@ -176,15 +181,48 @@ const UserReels = () => {
             className="snap-start overflow-y-hidden py-0 px-0 md:py-8 h-screen w-screen flex items-center justify-center relative bg-black/30 backdrop-blur-lg"
           >
             <div className="aspect-[9/16] w-full sm:w-[360px] md:w-[400px] lg:w-[380px] xl:w-[400px] h-full flex items-center justify-center relative">
-              <video
-                preload="auto"
-                src={reel.videoUrl}
-                className="h-full w-full object-cover rounded-lg shadow-lg"
-                loop
-                playsInline
-                autoPlay
-                controls={false}
-              />
+              <div
+                className="relative h-full w-full"
+                onClick={() => {
+                  const video = videoRefs.current[index];
+                  if (video) {
+                    const isPaused = video.paused;
+                    isPaused ? video.play() : video.pause();
+
+                    setVideoStates((prev) => ({
+                      ...prev,
+                      [index]: isPaused ? "playing" : "paused",
+                    }));
+
+                    setVisibleIconIndex(index);
+                    setTimeout(() => setVisibleIconIndex(null), 1000); // 1s fade
+                  }
+                }}
+              >
+                <video
+                  ref={(el) => (videoRefs.current[index] = el)}
+                  preload="auto"
+                  src={reel.videoUrl}
+                  className="h-full w-full object-cover rounded-lg shadow-lg"
+                  loop
+                  playsInline
+                  autoPlay
+                  controls={false}
+                />
+
+                {/* Play/Pause Icon Overlay */}
+                {visibleIconIndex === index && (
+                  <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                    <div className="text-white text-6xl p-4 rounded-full transition-opacity duration-1000 opacity-100 animate-fadeOut">
+                      {videoStates[index] === "playing" ? (
+                        <FaPause />
+                      ) : (
+                        <FaPlay />
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
 
               <div className="absolute right-3 bottom-30 z-10 flex flex-col items-center gap-1 text-white">
                 <button
