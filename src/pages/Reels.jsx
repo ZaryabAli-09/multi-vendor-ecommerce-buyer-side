@@ -70,7 +70,7 @@ const UserReels = () => {
       setLoadingMore(false);
     }
   }, [page, userId]);
-
+  console.log(reels, page);
   useEffect(() => {
     fetchReels();
   }, [fetchReels]);
