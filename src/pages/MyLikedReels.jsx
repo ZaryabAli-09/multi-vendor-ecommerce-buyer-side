@@ -76,7 +76,7 @@ const MyLikedReels = () => {
     return (
       <div className="p-4 mb-44 text-center">
         <h2 className="text-xl text-center  md:text-2xl font-semibold mb-10">
-          ❤️ My Liked Reels
+          My Liked Reels ❤️
         </h2>
 
         {likedReels.length === 0 ? (
