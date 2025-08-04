@@ -9,7 +9,9 @@ function ProductsFeed({ setIsSimilarProductsVisible, setTargetProductId }) {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const user = useSelector((state) => state.user?.id);
 
+  console.log(user);
   useEffect(() => {
     async function fetchProducts() {
       setIsLoading(true);
@@ -17,7 +19,10 @@ function ProductsFeed({ setIsSimilarProductsVisible, setTargetProductId }) {
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}/product/all?page=${page}`,
           {
-            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+              "x-buyer-id": user, // Send buyer ID here
+            },
           }
         );
 
