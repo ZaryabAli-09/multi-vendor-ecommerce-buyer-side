@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating.jsx";
+import FindSimilarBtn from "./FindSimilarBtn.jsx";
 
 function ProductCard({
   images,
@@ -12,6 +13,8 @@ function ProductCard({
   brand,
   rating,
   sold,
+  setIsSimilarProductsVisible,
+  setTargetProductId,
 }) {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -28,6 +31,11 @@ function ProductCard({
           className="w-full h-full object-cover"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
+        />
+        <FindSimilarBtn
+          setIsSimilarProductsVisible={setIsSimilarProductsVisible}
+          setTargetProductId={setTargetProductId}
+          id={id}
         />
       </div>
 

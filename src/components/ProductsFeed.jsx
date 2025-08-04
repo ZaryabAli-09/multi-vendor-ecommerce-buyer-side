@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ProductCard from "./ProductCard.jsx";
 import { setProducts, addProducts } from "../features/productsFeedSlice.js";
 
-function ProductsFeed() {
+function ProductsFeed({ setIsSimilarProductsVisible, setTargetProductId }) {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.productsFeed.products);
   const [page, setPage] = useState(1);
@@ -15,7 +15,10 @@ function ProductsFeed() {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/product/all?page=${page}`
+          `${import.meta.env.VITE_API_URL}/product/all?page=${page}`,
+          {
+            credentials: "include",
+          }
         );
 
         if (!response.ok) {
@@ -62,6 +65,8 @@ function ProductsFeed() {
             rating={product.rating}
             key={product._id}
             sold={product.sold}
+            setIsSimilarProductsVisible={setIsSimilarProductsVisible}
+            setTargetProductId={setTargetProductId}
           />
         ))}
       </div>

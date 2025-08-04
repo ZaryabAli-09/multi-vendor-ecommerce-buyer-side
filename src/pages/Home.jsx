@@ -3,8 +3,37 @@ import HomeSlider from "../components/HomeSlider.jsx";
 import TopCategories from "../components/TopCategories.jsx";
 import WhatsNewPopup from "../components/WhatsNew.jsx";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import SimilarProducts from "../components/SimilarProducts.jsx";
+
+// function Home() {
+//   return (
+//     <main className="relative">
+//       {/* Eye-catching vertical reel button */}
+//       <Link
+//         to="/reels/all"
+//         className="fixed  -right-24 md:-right-36 hover:-right-3 md:text-lg text-xs top-1/2 -translate-y-1/2 z-50 animate-bounce rounded-l-3xl  transform bg-gradient-to-l from-pink-600 to-red-600 text-white font-bold px-4 md:px-6 py-3  shadow-2xl hover:scale-105 hover:brightness-110 transition-all duration-300"
+//       >
+//         🎬 Explore Reels
+//       </Link>
+
+//       {/* Main content */}
+//       <HomeSlider />
+//       <TopCategories />
+//       <ProductsFeed />
+//       <WhatsNewPopup />
+//     </main>
+//   );
+// }
+
+// export default Home;
 
 function Home() {
+  const [isSimilarProductsVisible, setIsSimilarProductsVisible] =
+    useState(false);
+  // this state variable will have the id of the product whoose similar products the user is trying to find
+  const [targetProductId, setTargetProductId] = useState(null);
+
   return (
     <main className="relative">
       {/* Eye-catching vertical reel button */}
@@ -14,12 +43,18 @@ function Home() {
       >
         🎬 Explore Reels
       </Link>
-
-      {/* Main content */}
       <HomeSlider />
       <TopCategories />
-      <ProductsFeed />
-      <WhatsNewPopup />
+      <ProductsFeed
+        setIsSimilarProductsVisible={setIsSimilarProductsVisible}
+        setTargetProductId={setTargetProductId}
+      />
+      <SimilarProducts
+        isSimilarProductsVisible={isSimilarProductsVisible}
+        setIsSimilarProductsVisible={setIsSimilarProductsVisible}
+        targetProductId={targetProductId}
+        setTargetProductId={setTargetProductId}
+      />
     </main>
   );
 }
