@@ -11,7 +11,6 @@ function ProductsFeed({ setIsSimilarProductsVisible, setTargetProductId }) {
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector((state) => state.user?.id);
 
-  console.log(user);
   useEffect(() => {
     async function fetchProducts() {
       setIsLoading(true);
