@@ -39,7 +39,7 @@ function Home() {
       {/* Eye-catching vertical reel button */}
       <Link
         to="/reels/all"
-        className="fixed  -right-24 md:-right-36 hover:-right-3 md:text-lg text-xs top-1/2 -translate-y-1/2 z-50 animate-bounce rounded-l-3xl  transform bg-gradient-to-l from-pink-600 to-red-600 text-white font-bold px-4 md:px-6 py-3  shadow-2xl hover:scale-105 hover:brightness-110 transition-all duration-300"
+        className="fixed  -right-3 md:text-lg text-xs top-1/2 -translate-y-1/2 z-50 animate-bounce rounded-l-3xl  transform bg-gradient-to-l from-pink-600 to-red-600 text-white font-bold px-4 md:px-4 py-3  shadow-2xl hover:scale-105 hover:brightness-110 transition-all duration-300"
       >
         🎬 Explore Reels
       </Link>
