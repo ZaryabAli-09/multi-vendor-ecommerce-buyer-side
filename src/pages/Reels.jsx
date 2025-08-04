@@ -36,7 +36,7 @@ const UserReels = () => {
       const data = await res.json();
       setUserLikedReels(data.data.likedReels || []);
     } catch (error) {
-      toast.error("Error fetching buyer data: " + error.message);
+      console.log(error);
     }
   };
 
